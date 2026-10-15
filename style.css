@@ -1,0 +1,22 @@
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: aqua;
+    padding-left: 40px; 
+    padding-right: 40px;
+    border-radius: 20vw;
+}
+
+.product {
+    display: flex;
+    justify-content: center;
+    
+
+}
+
+.product img {
+    display: flex;
+    width: 10%;
+    height: 100%;
+}
