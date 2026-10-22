@@ -9,25 +9,21 @@
 <body>
 
 <div id="navbar">
-    <a href="index.html">Altmuligbutikken</a> 
-    <h1>Søk</h1>
+    <a id="headline" href="index.html">Altmuligbutikken</a>
+    <h1 id="søk">Søk</h1>
+    <a href="handlekurv.html"><img src="content_img/shopping-cart.svg" alt="handlekurv symbol"></a>
 </div>
 
-
-    <h1>produkter</h1>
-    
-<div id = "prodikt-side">
-    <img id = "bilde" src="" alt="">
-    <div id = "info">
-        <h1 id = "navn"></h1>
-        <h2 id = "pris"></h1>
-        <p id = "beskrivelse"></p>
-        <button>Legg till i handlekurv</button>
+<div id="produkt-side">
+    <img id="bilde" src="" alt="">
+    <div id="info">
+        <h1 id="navn"></h1>
+        <h2 id="pris"></h2>
+        <p id="beskrivelse"></p>
+        <button onclick="add_kurv()">Legg til i handlekurv</button>
     </div>
 </div>
 
-
-
-</body>
 <script src="script.js"></script>
+</body>
 </html>
