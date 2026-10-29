@@ -48,12 +48,20 @@ if (lagret !== null) {
 function add_kurv() {
     handlekurv.push(id)
     localStorage.setItem("handlekurv", JSON.stringify(handlekurv))
+    console.log(handlekurv)
 }
 
 function fjern_fra_kurv(index) {
     handlekurv.splice(index, 1)
     localStorage.setItem("handlekurv", JSON.stringify(handlekurv))
     location.reload()
+}
+
+function tom_kurv() {
+    handlekurv = []
+    localStorage.setItem("handlekurv", JSON.stringify(handlekurv))
+    document.getElementById("kurv-innhold").innerHTML = ""
+    document.getElementById("sum").textContent = "Sum: 0 Kr"
 }
 
 const produktSide = document.getElementById("produkt-side")
@@ -72,6 +80,10 @@ if (produktSide) {
     }
 }
 
+
+
+
+
 const boks = document.getElementById("kurv-innhold")
 
 if (boks) {
@@ -87,10 +99,12 @@ if (boks) {
                 <span>${vare.pris} Kr</span>
                 <button onclick="fjern_fra_kurv(${i})">Fjern</button>
             </div>
-        `
-
+            `
+        
         sum = sum + vare.pris
     }
 
     document.getElementById("sum").textContent = "Sum: " + sum + " Kr"
 }
+
+

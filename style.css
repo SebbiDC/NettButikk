@@ -59,25 +59,30 @@
     margin-top: 30px;
     font-size: 2vh;
     width: 60vw;
+    max-width: 900px;
 }
 
 #produkt-side img{
     margin: 20px;
+    width: 50%;
+    height: 50%;
 }
 
 #produkt-side button {
     background-color: aqua;
     border-radius: 20px;
     border-color: black;
+    border: solid;
     width: 15vh;
     height: 6vh;
     font-size: 2vh;
+    display: flex;
+    bottom: 15vh;
 }
 
 #info {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    right: 30vw;
-    bottom: 50vh;
+    margin-left: 5vh;
+    font-size: larger;
 }
