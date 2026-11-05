@@ -48,7 +48,6 @@ if (lagret !== null) {
 function add_kurv() {
     handlekurv.push(id)
     localStorage.setItem("handlekurv", JSON.stringify(handlekurv))
-    console.log(handlekurv)
 }
 
 function fjern_fra_kurv(index) {
@@ -105,6 +104,44 @@ if (boks) {
     }
 
     document.getElementById("sum").textContent = "Sum: " + sum + " Kr"
+}
+
+
+const container = document.getElementById("produktContainer")
+const sokefelt = document.getElementById("sokefelt")
+
+function visProdukter(liste) {
+    container.innerHTML = ""
+
+    for (const [pid, p] of liste) {
+        container.innerHTML += `
+            <a class="product" href="product.html?id=${pid}">
+                <img src="${p.bilde}" alt="${p.navn}">
+                <h3>${p.navn}</h3>
+                <h2>${p.pris} Kr</h2>
+            </a>
+        `
+    }
+}
+
+if (container && sokefelt) {
+    const alle = Object.entries(produkter)
+
+    visProdukter(alle)
+
+    sokefelt.addEventListener("input", () => {
+        const sok = sokefelt.value.toLowerCase()
+
+        const resultat = alle.filter(([pid, p]) =>
+            p.navn.toLowerCase().includes(sok)
+        )
+
+        if (resultat.length === 0) {
+            container.innerHTML = "<p>Ingen produkter funnet.</p>"
+        } else {
+            visProdukter(resultat)
+        }
+    })
 }
 
 
