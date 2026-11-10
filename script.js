@@ -3,35 +3,35 @@ const produkter = {
         navn: "Hele bananer",
         pris: 43,
         bilde: "product_img/banan.jpg",
-        beskrivelse: "Hele bananer"
+        beskrivelse: "4.2 Hele bananer"
     },
 
     skruer: {
         navn: "Skru",
         pris: 5,
         bilde: "product_img/skruer.jpg",
-        beskrivelse: "Skruer i rustfritt stål."
+        beskrivelse: "Skruer i rustfylt stål."
     },
 
     robotstøvsuger: {
         navn: "Robotstøvsuger",
         pris: 4000,
         bilde: "product_img/robotstøvsuger.jpg",
-        beskrivelse: "Støvsuger gulvet helt selv."
+        beskrivelse: "Lager lyd og hjelper ikke."
     },
 
     ram: {
         navn: "16 GB DDR5 RAM",
         pris: 15000000,
         bilde: "product_img/ram.jpg",
-        beskrivelse: "Raskt RAM med RGB-lys."
+        beskrivelse: "DDR5 RAM, super tilbud."
     },
 
     datasenter: {
         navn: "Datasenter",
         pris: 130000,
         bilde: "product_img/datasenter.jpg",
-        beskrivelse: "Et helt datasenter."
+        beskrivelse: "Et helt datasenter. (RAM ikke inkludert)"
     }
 }
 
@@ -107,41 +107,46 @@ if (boks) {
 }
 
 
-const container = document.getElementById("produktContainer")
-const sokefelt = document.getElementById("sokefelt")
+const container = document.getElementById("produktContainer");
+const sokefelt = document.getElementById("sokefelt");
+
+
+let alleIder = Object.keys(produkter);
 
 function visProdukter(liste) {
-    container.innerHTML = ""
 
-    for (const [pid, p] of liste) {
+    container.innerHTML = "";
+
+    for (let produktId of liste) {
+
+        let produkt = produkter[produktId];
+
         container.innerHTML += `
-            <a class="product" href="product.html?id=${pid}">
-                <img src="${p.bilde}" alt="${p.navn}">
-                <h3>${p.navn}</h3>
-                <h2>${p.pris} Kr</h2>
+            <a class="product" href="product.html?id=${produktId}">
+                <img src="${produkt.bilde}" alt="${produkt.navn}">
+                <h3>${produkt.navn}</h3>
+                <h2>${produkt.pris} Kr</h2>
             </a>
-        `
+        `;
     }
 }
 
 if (container && sokefelt) {
-    const alle = Object.entries(produkter)
 
-    visProdukter(alle)
+    visProdukter(alleIder);
 
     sokefelt.addEventListener("input", () => {
-        const sok = sokefelt.value.toLowerCase()
 
-        const resultat = alle.filter(([pid, p]) =>
-            p.navn.toLowerCase().includes(sok)
-        )
+        let sok = sokefelt.value.toLowerCase();
+
+        let resultat = alleIder.filter(produktId =>
+            produkter[produktId].navn.toLowerCase().includes(sok)
+        );
 
         if (resultat.length === 0) {
-            container.innerHTML = "<p>Ingen produkter funnet.</p>"
+            container.innerHTML = "<p>Ingen produkter funnet.</p>";
         } else {
-            visProdukter(resultat)
+            visProdukter(resultat);
         }
-    })
+    });
 }
-
-
