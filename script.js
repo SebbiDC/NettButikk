@@ -58,12 +58,12 @@ const produkter = {
         navn: "Smarthøyttaler",
         pris: 1200,
         tag: "teknologi",
-        bilde: "product_img/smarthoyttaler.jpg",
+        bilde: "product_img/smarthøyttaler.jpg",
         beskrivelse: "Lytter alltid. Forstår sjelden."
     },
 
     musematte: {
-        navn: "RGB-musematte",
+        navn: "Musematte",
         pris: 499,
         tag: "teknologi",
         bilde: "product_img/musematte.jpg",
@@ -74,7 +74,7 @@ const produkter = {
         navn: "Serverskap",
         pris: 45000,
         tag: "infrastruktur",
-        bilde: "product_img/server.jpg",
+        bilde: "product_img/serverskap.jpg",
         beskrivelse: "Varmer opp rommet gratis. Støyer også gratis."
     },
 
@@ -82,7 +82,7 @@ const produkter = {
         navn: "Nettverkskabel 100 m",
         pris: 350,
         tag: "infrastruktur",
-        bilde: "product_img/kabel.jpg",
+        bilde: "product_img/nettverkskabel.jpg",
         beskrivelse: "Garantert floket ved levering."
     },
 
@@ -90,7 +90,7 @@ const produkter = {
         navn: "Knekkebrød",
         pris: 35,
         tag: "mat",
-        bilde: "product_img/knekkebrod.jpg",
+        bilde: "product_img/knakkebrød.jpg",
         beskrivelse: "Knasende godt. Knasende høyt."
     },
 
@@ -98,7 +98,7 @@ const produkter = {
         navn: "Kaffe 1 kg",
         pris: 129,
         tag: "mat",
-        bilde: "product_img/kaffe.jpg",
+        bilde: "product_img/kaffe.png",
         beskrivelse: "Drivstoff for utviklere."
     }
 }
@@ -106,7 +106,16 @@ const produkter = {
 const id = new URLSearchParams(window.location.search).get("id")
 const produkt = produkter[id]
 
+
 let handlekurv = []
+let antall = 0
+
+
+const antallIKurv = document.getElementById("antallIKurv")
+if (antallIKurv) {
+    antallIKurv.textContent = handlekurv.length
+}
+
 
 const lagret = localStorage.getItem("handlekurv")
 if (lagret !== null) {
@@ -116,12 +125,14 @@ if (lagret !== null) {
 function add_kurv() {
     handlekurv.push(id)
     localStorage.setItem("handlekurv", JSON.stringify(handlekurv))
+    antall += 1
 }
 
 function fjern_fra_kurv(index) {
     handlekurv.splice(index, 1)
     localStorage.setItem("handlekurv", JSON.stringify(handlekurv))
     location.reload()
+    antall -= 1
 }
 
 function tom_kurv() {
@@ -129,6 +140,7 @@ function tom_kurv() {
     localStorage.setItem("handlekurv", JSON.stringify(handlekurv))
     document.getElementById("kurv-innhold").innerHTML = ""
     document.getElementById("sum").textContent = "Sum: 0 Kr"
+    antall = 0
 }
 
 const produktSide = document.getElementById("produkt-side")
@@ -146,7 +158,6 @@ if (produktSide) {
         produktSide.innerHTML = "<h1>fant ikke produktet</h1>"
     }
 }
-
 
 
 
